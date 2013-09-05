@@ -18,7 +18,7 @@ pidfile = None
 from frontik.app import App
 urls = [
 #format:    (regexp,                    dispatcher),
-            (r".*",                     App("xtnews", "./frontik/")),
+            (r"/",                     App("xtnews", "./frontik/")),
 ]
 
 use_standart_doc = False

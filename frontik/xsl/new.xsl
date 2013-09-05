@@ -9,13 +9,11 @@
   omit-xml-declaration="yes"
   doctype-system="about:legacy-compat"/>
 
-<xsl:include href="chunks/object.xsl"/>
+
+<xsl:include href="chunks/object-form.xsl"/>
 
 <xsl:template match="/">
-    <xsl:for-each select="//objects/object">
-        <xsl:call-template name="object" />
-    </xsl:for-each>
-    <a href="new/">Add</a>
+    <xsl:call-template name="object-form" />
 </xsl:template>
 
 </xsl:stylesheet>

@@ -5,7 +5,7 @@ sys.path.insert(0, 'src')
 
 requires = [
     'webob',
-    'pytz',
+    'python-dateutil',
 ]
 
 setup(
