@@ -8,18 +8,18 @@ def now():
 
 _DATA = [{
     'id': 1,
-    'subject': 'First message',
-    'text': "No body",
+    'subject': 'Obama pushes for support on Syria',
+    'text': "US President Obama uses his final day at the G20 summit to push for support for a military strike on Syria, but global leaders remain deeply divided.",
     'date_created': now()
 },{
     'id': 2,
-    'subject': 'Second message',
-    'text': "No body",
+    'subject': 'Dutch liable for Srebrenica deaths',
+    'text': "The Dutch supreme court rules that the Netherlands is liable for the deaths of three Bosnian Muslim men killed during the 1995 Srebrenica massacre.",
     'date_created': now()
 },{
     'id': 3,
-    'subject': 'Breaking news!',
-    'text': "No body",
+    'subject': "US and UK 'crack online encryption'",
+    'text': "US and UK intelligence agencies reportedly crack technology used to encrypt internet services such as online banking, medical records and email.",
     'date_created': now()
 }]
 

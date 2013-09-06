@@ -25,7 +25,7 @@ OBJECT_TEMPLATE = """<object id="%(id)s" subject="%(subject)s" dateCreated="%(da
 class Application(object):
 
     def render_form_response(self, item, errors):
-        yield "<formResponse>"
+        yield "<form>"
         yield self.render_item(item)
         if errors:
             yield "<errors>"
@@ -33,7 +33,7 @@ class Application(object):
                 yield '<error field="%s">%s</error>' % (field_name, error_text)
             yield "</errors>"
 
-        yield "</formResponse>"
+        yield "</form>"
 
     def render_item(self, data):
         return str(OBJECT_TEMPLATE % data)
