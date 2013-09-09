@@ -1,0 +1,7 @@
+lxml>=2.2.8,<2.3a
+git+https://github.com/hhru/tornado
+git+https://github.com/hhru/tornado-util
+git+https://github.com/hhru/frontik.git
+simplejson
+honcho
+pycurl

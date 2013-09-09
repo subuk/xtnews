@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <errors>
+        {%- for field_name, errors in form.errors.items() %}
+            {%- for error_text in errors %}
+                <error field="{{ field_name }}">{{ error_text }}</error>
+            {%- endfor %}
+        {%- endfor %}
+    </errors>
+    <values>
+        {%- for field_name, value in form.data.items() %}
+            <value field="{{ field_name }}">{{ value }}</value>
+        {%- endfor %}
+    </values>
+</form>

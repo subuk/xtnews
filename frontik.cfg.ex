@@ -16,9 +16,14 @@ syslog_address = "/dev/log"
 pidfile = None
 
 from frontik.app import App
+import tornado.web
+
+#StaticHandler =
+
+static_path = "static/"
+
 urls = [
-#format:    (regexp,                    dispatcher),
-            (r"/",                     App("xtnews", "./frontik/")),
+    (r"/", App("xtnews", "./frontik/")),
 ]
 
 use_standart_doc = False

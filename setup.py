@@ -1,25 +1,35 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
-import sys
+import os, sys
 sys.path.insert(0, 'src')
 
 requires = [
-    'webob',
+    'pyramid',
+    'WebError',
+    'pymongo',
+    'wtforms',
     'python-dateutil',
+    'SQLAlchemy==0.8.2',
+    'transaction',
+    'zope.sqlalchemy',
+    'pyramid_jinja2',
 ]
 
 setup(
     name='xtnews',
     author='Matvey Kruglov',
     author_email='kubus@openpz.org',
-    version=__import__('xtnews').__version__,
+    version='0.1',
     packages=['xtnews'],
     include_package_data=True,
     install_requires=requires,
     zip_safe=False,
     entry_points={
         'console_scripts': [
-            'xtnews = xtnews.main:run',
+            'xtnews-initdb = xtnews.scripts.initdb:main',
+        ],
+        'paste.app_factory': [
+            'main = xtnews:main'
         ]
     },
 )
