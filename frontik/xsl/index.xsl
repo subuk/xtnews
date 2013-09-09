@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<xsl:output method="html"
-  encoding="UTF-8"
-  indent="yes"
-  cdata-section-elements="script noscript"
-  undeclare-namespaces="yes"
-  omit-xml-declaration="yes"
-  doctype-system="about:legacy-compat" />
+<xsl:output method="html" encoding="utf-8" indent="yes" />
 
-<!--
-<xsl:template match="doc" mode="header">
+<xsl:template match="/">
+
+<xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html></xsl:text>
+<html>
   <head>
-    <link rel="stylesheet" type="text/css" charset="utf-8" href="{$shost}markup/_pages/style.css" />
+    <link rel="stylesheet" type="text/css" charset="utf-8" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" />
   </head>
+  <body>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="/new/">add</a></li>
+        </ul>
+        <h3 class="text-muted"><a href="/">xtNews</a></h3>
+      </div>
+
+      <div class="row marketing">
+        <xsl:apply-templates />
+      </div>
+    </div> <!-- /container -->
+  </body>
+</html>
 </xsl:template>
- -->
 
 <xsl:template name="formatDate">
   <xsl:param name="datetime" />
@@ -23,13 +34,13 @@
 </xsl:template>
 
 <xsl:template match="objects">
+  
   <table class="table">
     <thead>
       <tr>
         <th>#</th>
-        <th>Date created</th>
         <th>Title</th>
-        <th>Text</th>
+        <th>Date created</th>
         <th></th>
         <th></th>
       </tr>
@@ -38,19 +49,24 @@
       <xsl:apply-templates />
     </tbody>
   </table>
-  <a href="new/">Add</a>
 </xsl:template>
 
-<xsl:template match="object">
+<xsl:template match="//doc/objects/object">
   <tr>
     <td><xsl:value-of select="id"/></td>
+    <td>
+      <a>
+        <xsl:attribute name="href">
+          <xsl:value-of select="id" /><xsl:text>/</xsl:text>
+        </xsl:attribute>
+        <xsl:value-of select="title"/>
+      </a>
+    </td>
     <td>
       <xsl:call-template name="formatDate">
         <xsl:with-param name="datetime" select="date_created"/>
       </xsl:call-template>
     </td>
-    <td><xsl:value-of select="title"/></td>
-    <td><xsl:value-of select="text"/></td>
     <td>
       <a>
         <xsl:attribute name="href">
@@ -70,6 +86,21 @@
   </tr>
 </xsl:template>
 
+<xsl:template match="//doc/object">
+  <h2>
+    <xsl:value-of select="title" />
+  </h2>
+  <div class="content">
+    <xsl:value-of select="text" />
+  </div>
+  <hr />
+  <p>
+  <xsl:call-template name="formatDate">
+    <xsl:with-param name="datetime" select="date_created"/>
+  </xsl:call-template>
+  </p>
+</xsl:template>
+
 <xsl:template match="form">
   <xsl:variable name="titleError">
     <xsl:value-of select="errors/error[@field='title']" />
@@ -80,6 +111,7 @@
   </xsl:variable>
 
   <form role="form" method="post" action="">
+
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" id="title" name="title">
@@ -97,7 +129,7 @@
 
     <div class="form-group">
       <label for="text">Text</label>
-      <textarea id="text" name="text" cols="50" rows="40">
+      <textarea class="form-control" rows="20" id="text" name="text">
         <xsl:value-of select="values/value[@field='text']" />
         <xsl:value-of select="//object/text" />
       </textarea>
@@ -108,15 +140,16 @@
         </p>
       </xsl:if>
     </div>
+
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </xsl:template>
 
 <xsl:template match="deleteConfirmation">
   <form method="post" action="">
-    Are you sure?
-    <button class="btn" type="submit">Yes</button>
-    <a href="../" class="btn">no</a>
+    Are you sure you want to delete this article?
+    <button class="btn btn-success" type="submit">Yes</button>
+    <a href="../" class="btn">No</a>
   </form>
 </xsl:template>
 

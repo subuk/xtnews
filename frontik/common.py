@@ -1,6 +1,7 @@
 
 import frontik.handler
 from tornado.web import HTTPError
+from lxml import etree
 
 def xsl(xsl_name):
     def __dec(func):
@@ -9,6 +10,8 @@ def xsl(xsl_name):
             func(self, *args, **kwargs)
         return __func
     return __dec
+
+
 
 class PageHandler(frontik.handler.PageHandler):
 

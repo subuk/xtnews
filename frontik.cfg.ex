@@ -20,7 +20,7 @@ import tornado.web
 
 #StaticHandler =
 
-static_path = "static/"
+spath = "static/"
 
 urls = [
     (r"/", App("xtnews", "./frontik/")),

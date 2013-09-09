@@ -57,6 +57,7 @@ class Item(BaseView):
     def delete(self):
         obj = self.get_object(self.request.matchdict['id'])
         self.db.delete(obj)
+        transaction.commit()
         return HTTPNoContent()
 
     @view_config(route_name='item', renderer='object_form_errors.xml.jinja2', request_method='PUT')
