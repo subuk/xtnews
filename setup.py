@@ -9,7 +9,7 @@ requires = [
     'pymongo',
     'wtforms',
     'python-dateutil',
-    'SQLAlchemy==0.8.2',
+    'SQLAlchemy',
     'transaction',
     'zope.sqlalchemy',
     'pyramid_jinja2',
